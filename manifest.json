@@ -1,0 +1,9 @@
+{
+  "name": "1619-Day Tracker",
+  "short_name": "DayTracker",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#2563eb",
+  "icons": []
+}

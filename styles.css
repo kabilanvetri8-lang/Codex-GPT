@@ -1,0 +1,18 @@
+:root { --bg:#f8fafc;--card:#fff;--text:#111827;--muted:#6b7280;--primary:#2563eb;--ok:#16a34a;--today:#f59e0b;--pending:#94a3b8; }
+*{box-sizing:border-box} body{margin:0;font-family:system-ui,sans-serif;background:var(--bg);color:var(--text)}
+.app-header{position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:.75rem 1rem;background:var(--card);border-bottom:1px solid #e5e7eb}
+h1{margin:0;font-size:1.1rem}.app-main{padding:.75rem;max-width:720px;margin:0 auto}
+.toolbar{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.75rem}.select{padding:.5rem;border-radius:10px;border:1px solid #cbd5e1;background:#fff}
+.legend{display:flex;gap:1rem;font-size:.85rem;color:var(--muted);margin-bottom:.75rem}.dot{width:.65rem;height:.65rem;display:inline-block;border-radius:50%;margin-right:.3rem}
+.dot.pending{background:var(--pending)}.dot.today{background:var(--today)}.dot.complete{background:var(--ok)}
+.days-list{display:flex;flex-direction:column;gap:.5rem;max-height:calc(100vh - 210px);overflow:auto;padding-bottom:5rem}
+.day-card{border:1px solid #e5e7eb;background:var(--card);border-left:6px solid var(--pending);border-radius:12px;padding:.75rem;text-align:left}
+.day-card.today{border-left-color:var(--today);background:#fff7ed}.day-card.completed{border-left-color:var(--ok);background:#ecfdf5}
+.day-card h3{margin:0;font-size:1rem}.day-card p{margin:.25rem 0 0;color:var(--muted);font-size:.85rem}
+.btn{border:0;background:var(--primary);color:#fff;border-radius:10px;padding:.6rem .8rem;font-weight:600}.btn.small{padding:.45rem .65rem;font-size:.82rem}
+.btn.secondary{background:#334155}.btn.ghost{background:transparent;color:var(--muted)}
+.summary-panel{background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:.75rem;margin-bottom:.75rem}.hidden{display:none}
+.modal{width:min(95vw,700px);border:0;border-radius:14px;padding:0}.form-grid{display:grid;gap:.75rem;padding:1rem}.modal-header{display:flex;justify-content:space-between;align-items:center}
+label,fieldset{display:grid;gap:.4rem;font-size:.9rem}input,textarea,select{width:100%;padding:.55rem;border:1px solid #cbd5e1;border-radius:10px;font:inherit}textarea{min-height:64px}
+fieldset{border:1px solid #e2e8f0;border-radius:10px;padding:.7rem}.score-box{background:#eef2ff;border:1px solid #c7d2fe;border-radius:10px;padding:.75rem;font-size:.9rem}
+@media (min-width:768px){.form-grid{grid-template-columns:1fr 1fr}.form-grid>*:nth-child(-n+2),.modal-header,.score-box,.btn,fieldset{grid-column:1/-1}}
