@@ -6,7 +6,8 @@ const KEYS = [
 
 function doPost(e) {
   try {
-    const data = JSON.parse(e.postData.contents || '{}');
+    const raw = (e && e.postData && e.postData.contents) ? e.postData.contents : '{}';
+    const data = JSON.parse(raw || '{}');
     const sheet = getSheet_();
     const normalized = { ...data, expenseItems: JSON.stringify(data.expenseItems || []) };
     const row = KEYS.map((k) => normalized[k] ?? '');

@@ -121,7 +121,7 @@ async function persistEntry(lockDay) {
     setSyncMessage('Saved locally. Set API_URL in script.js to enable Google Sheets sync.');
   } else {
     try {
-      const res = await fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(entry) });
+      const res = await fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(entry) });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       setSyncMessage('Saved and synced to Google Sheets.');
     } catch (e) {
