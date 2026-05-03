@@ -14,12 +14,25 @@
   </header>
 
   <main class="app-main">
+    <section class="toolbar">
+      <button id="viewWindowBtn" class="btn small">Today Window</button>
+      <button id="viewAllBtn" class="btn small secondary">Show All</button>
+      <select id="summaryRange" class="select">
+        <option value="">Summary View</option>
+        <option value="thisWeek">This Week</option>
+        <option value="lastWeek">Last Week</option>
+        <option value="thisMonth">This Month</option>
+        <option value="lastMonth">Last Month</option>
+      </select>
+    </section>
+
     <section class="legend">
       <span><i class="dot pending"></i>Pending</span>
       <span><i class="dot today"></i>Today</span>
       <span><i class="dot complete"></i>Completed</span>
     </section>
 
+    <section id="summaryPanel" class="summary-panel hidden"></section>
     <section id="daysList" class="days-list" aria-label="Days list"></section>
   </main>
 
@@ -30,89 +43,38 @@
         <button type="button" id="closeDayDialog" class="btn ghost">✕</button>
       </div>
 
-      <label>Plan
-        <textarea name="plan" required></textarea>
-      </label>
-
-      <label>Top 3 Priorities (one per line)
-        <textarea name="priorities" required></textarea>
-      </label>
-
-      <label>Tasks Planned (one per line)
-        <textarea name="tasksPlanned" required></textarea>
-      </label>
-
-      <label>Tasks Completed (one per line)
-        <textarea name="tasksCompleted"></textarea>
-      </label>
+      <label>Plan<textarea name="plan" required></textarea></label>
+      <label>Top 3 Priorities (one per line)<textarea name="priorities" required></textarea></label>
+      <label>Tasks Planned (one per line)<textarea name="tasksPlanned" required></textarea></label>
+      <label>Tasks Completed (one per line)<textarea name="tasksCompleted"></textarea></label>
 
       <fieldset>
         <legend>Workout</legend>
-        <label>Planned
-          <input name="workoutPlanned" readonly />
-        </label>
-        <label>Done
-          <select name="workoutDone" required>
-            <option value="">Select</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-          </select>
-        </label>
-        <label>Details
-          <textarea name="workoutDetails"></textarea>
-        </label>
-        <label>Duration (min)
-          <input type="number" name="workoutDuration" min="0" />
-        </label>
-        <label>Intensity (1-10)
-          <input type="number" name="workoutIntensity" min="1" max="10" />
-        </label>
+        <label>Planned<input name="workoutPlanned" readonly /></label>
+        <label>Done<select name="workoutDone" required><option value="">Select</option><option value="yes">Yes</option><option value="no">No</option></select></label>
+        <label>Details<textarea name="workoutDetails"></textarea></label>
+        <label>Duration (min)<input type="number" name="workoutDuration" min="0" /></label>
+        <label>Intensity (1-10)<input type="number" name="workoutIntensity" min="1" max="10" /></label>
       </fieldset>
 
       <fieldset>
         <legend>Diet</legend>
-        <label>Planned
-          <input name="dietPlanned" readonly />
-        </label>
-        <label>Followed
-          <select name="dietFollowed" required>
-            <option value="">Select</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-          </select>
-        </label>
-        <label>Meals
-          <textarea name="dietMeals"></textarea>
-        </label>
-        <label>Notes
-          <textarea name="dietNotes"></textarea>
-        </label>
+        <label>Planned<input name="dietPlanned" readonly /></label>
+        <label>Followed<select name="dietFollowed" required><option value="">Select</option><option value="yes">Yes</option><option value="no">No</option></select></label>
+        <label>Meals<textarea name="dietMeals"></textarea></label>
+        <label>Notes<textarea name="dietNotes"></textarea></label>
       </fieldset>
 
       <fieldset>
         <legend>Expenses</legend>
-        <label>Total
-          <input type="number" name="expenseTotal" min="0" step="0.01" />
-        </label>
-        <label>Categories (JSON or comma list)
-          <textarea name="expenseCategories"></textarea>
-        </label>
+        <label>Total<input type="number" name="expenseTotal" min="0" step="0.01" /></label>
+        <label>Categories<textarea name="expenseCategories"></textarea></label>
       </fieldset>
 
-      <label>Reflection
-        <textarea name="reflection"></textarea>
-      </label>
-
-      <label>Wins
-        <textarea name="wins"></textarea>
-      </label>
-
-      <label>Improvement Notes
-        <textarea name="improvements"></textarea>
-      </label>
-
+      <label>Reflection<textarea name="reflection"></textarea></label>
+      <label>Wins<textarea name="wins"></textarea></label>
+      <label>Improvement Notes<textarea name="improvements"></textarea></label>
       <section class="score-box" id="scorePreview"></section>
-
       <button id="submitBtn" class="btn" type="submit">Save & Lock Day</button>
     </form>
   </dialog>
