@@ -30,6 +30,14 @@ const toISODate = (d) => d.toISOString().slice(0, 10);
 const parseLines = (t = '') => t.split('\n').map((v) => v.trim()).filter(Boolean);
 const dayDiff = (a, b) => Math.ceil((b - a) / 86400000);
 
+function isApiConfigured() {
+  return API_URL && !API_URL.includes('YOUR_DEPLOYMENT_ID');
+}
+
+function setSyncMessage(msg) {
+  el.scorePreview.insertAdjacentHTML('beforeend', `<div class="sync-msg">${msg}</div>`);
+}
+
 function computeScores(payload) {
   const completed = parseLines(payload.tasksCompleted).length;
   const taskCompletion = Math.min(100, completed * 20);
@@ -109,7 +117,18 @@ async function persistEntry(lockDay) {
   const entry = { ...payload, ...computeScores(payload), expenseItems: getExpenseItems(), date: state.activeDateISO, locked: !!lockDay, updatedAt: new Date().toISOString() };
   recalcExpenseTotal();
   state.entries[state.activeDateISO] = entry; localStorage.setItem(STORAGE_KEYS.entries, JSON.stringify(state.entries));
-  try { await fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(entry) }); } catch (e) { console.warn('Sync failed', e); }
+  if (!isApiConfigured()) {
+    setSyncMessage('Saved locally. Set API_URL in script.js to enable Google Sheets sync.');
+  } else {
+    try {
+      const res = await fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(entry) });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      setSyncMessage('Saved and synced to Google Sheets.');
+    } catch (e) {
+      console.warn('Sync failed', e);
+      setSyncMessage('Saved locally, but sync failed. Check Apps Script deployment permissions and URL.');
+    }
+  }
   renderDays(); showSummary(el.summaryRange.value);
 }
 

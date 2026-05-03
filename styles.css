@@ -14,3 +14,4 @@ label,fieldset{display:grid;gap:.4rem}fieldset{border:1px solid #e2e8f0;border-r
 .action-row{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}.expense-row{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:.4rem;align-items:center;margin-bottom:.45rem}
 .icon-btn{background:#fee2e2;color:#991b1b;border:0;border-radius:8px;padding:.45rem .5rem}
 @media(min-width:768px){.goal-cards{grid-template-columns:1fr 1fr 1fr auto}}
+.sync-msg{margin-top:.45rem;color:#1d4ed8;font-size:.82rem}
